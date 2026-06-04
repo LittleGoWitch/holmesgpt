@@ -89,8 +89,10 @@ podSecurityContext: {}
 
 # Container-level security context for the Holmes container
 # Applied to containers[].securityContext in the Deployment
-# Note: readOnlyRootFilesystem is configurable below
+# Note: readOnlyRootFilesystem defaults to true (required for OpenShift restricted SCC)
+# To override, set readOnlyRootFilesystem: false here
 containerSecurityContext: {}
+  # readOnlyRootFilesystem: false  # Set to false to disable read-only root filesystem
   # allowPrivilegeEscalation: false
   # capabilities:
   #   drop:
@@ -903,8 +905,3 @@ operator:
   nodeSelector: {}
   tolerations: []
   affinity: {}
-
-# Holmes Container Security Configuration
-# Control the readOnlyRootFilesystem setting
-containerSecurityConfig:
-  readOnlyRootFilesystem: true
