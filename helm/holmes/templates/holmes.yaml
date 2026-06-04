@@ -94,7 +94,7 @@ spec:
         # Required for OpenShift restricted SCC and other security-hardened
         # environments that enforce read-only root filesystems.
         securityContext:
-          readOnlyRootFilesystem: true
+          readOnlyRootFilesystem: {{ .Values.containerSecurityConfig.readOnlyRootFilesystem }}
           {{- with .Values.containerSecurityContext }}
           {{- toYaml . | nindent 10 }}
           {{- end }}
