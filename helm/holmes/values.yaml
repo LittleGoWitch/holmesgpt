@@ -89,7 +89,7 @@ podSecurityContext: {}
 
 # Container-level security context for the Holmes container
 # Applied to containers[].securityContext in the Deployment
-# Note: readOnlyRootFilesystem is always true (required for Holmes operation)
+# Note: readOnlyRootFilesystem is configurable below
 containerSecurityContext: {}
   # allowPrivilegeEscalation: false
   # capabilities:
@@ -300,7 +300,7 @@ mcpAddons:
     # Service account key authentication (recommended)
     serviceAccountKey:
       secretName: ""  # Name of K8s secret containing the service account key (e.g., "gcp-sa-key")
-                     # Secret must have a key named "key.json" with the service account JSON key
+                      # Secret must have a key named "key.json" with the service account JSON key
 
     # Kubernetes service account (for Workload Identity - currently not working with gcloud CLI)
     serviceAccount:
@@ -904,8 +904,7 @@ operator:
   tolerations: []
   affinity: {}
 
-
-
-
-
-       
+# Holmes Container Security Configuration
+# Control the readOnlyRootFilesystem setting
+containerSecurityConfig:
+  readOnlyRootFilesystem: true
